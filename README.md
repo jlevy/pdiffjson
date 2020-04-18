@@ -22,7 +22,7 @@
     $ pdiffjson
     Usage: pdiffjson [diff options] file1.json file2.json
 
-    Show diff of pretty-printed, normalized, colorized JSON. Uses less to
+    Show pretty-printed, colored diff of normalized JSON. Uses less to
     paginate the output. Allows a readable diff of any JSON, ignoring all
     non-semantic whitespace.
 
@@ -36,9 +36,9 @@
     By default calls diff without arguments, yielding a unified diff. But
     it can be helpful to add standard diff arguments to refine the type of
     output, such as:
-      -c (contextual diff)
-      -C2 (contextual diff with two lines of context)
-      -U5 (unified diff with 5 lines of context)
+    -c (contextual diff),
+    -C2 (contextual diff with two lines of context), or
+    -U5 (unified diff with 5 lines of context).
     $
 
 ## Installation

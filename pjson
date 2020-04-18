@@ -1,5 +1,5 @@
 #!/bin/bash
-# Convenience script to pretty-print and browse colored JSON without remembering flags.
+# Pretty-print and browse colored JSON without remembering flags.
 # Read from files or stdin.
 
 jq -C . "$@" | less -R -m

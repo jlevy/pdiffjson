@@ -1,11 +1,12 @@
-#!/bin/bash
+.TH pdiffjson 1 "April 2020" "0.2" ""
+.SH NAME
+pdiffjson \- diff JSON the easy way
 
-set -euo pipefail
+.SH SYNOPSIS
+pdiffjson [diff options] file1.json file2.json
 
-if [[ $# < 2 ]]; then
-  echo 'Usage: $(basename $0) [diff options] file1.json file2.json
-
-Show pretty-printed, colored diff of normalized JSON. Uses less to
+.SH DESCRIPTION
+Show colored diff of pretty-printed, normalized JSON. Uses less to
 paginate the output. Allows a readable diff of any JSON, ignoring all
 non-semantic whitespace.
 
@@ -16,28 +17,20 @@ diff. Works on large files since it relies only on diff and jq.
 Keys are sorted before calling diff, so ordering of keys in collections
 is ignored (as it should be).
 
+Expects to be used from a terminal with color support.
+
 By default calls diff without arguments, yielding a unified diff. But
 it can be helpful to add standard diff arguments to refine the type of
 output, such as:
 -c (contextual diff),
 -C2 (contextual diff with two lines of context), or
--U5 (unified diff with 5 lines of context).'
+-U5 (unified diff with 5 lines of context).
 
-  exit 1
-fi
+.SH OPTIONS
+Options are the same as diff(1).
 
-# Last two args are the two files. Other options are passed to diff.
-file1="${@:(-2):1}"
-file2="${@:(-1):1}"
-num_diff_opts=$(($#-2))
+.SH SEE ALSO
+diff(1), colordiff(1), less(1), jq
 
-if [[ ! -f "$file1" ]]; then
-  echo "not a file: $file1"
-  exit 1
-fi
-if [[ ! -f "$file2" ]]; then
-  echo "not a file: $file2"
-  exit 1
-fi
-
-diff ${@:1:$num_diff_opts} <(jq --sort-keys . < "$file1") <(jq --sort-keys . < "$file2") | colordiff | less -R
+.SH AUTHOR
+Joshua Levy (joshua@cal.berkeley.edu)

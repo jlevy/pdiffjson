@@ -1,0 +1,31 @@
+{
+  "name": "pdiffjson",
+  "version": "0.2.0",
+  "description": "diff JSON the easy way",
+  "license": "Apache 2",
+  "keywords": [
+    "cli",
+    "json",
+    "diff",
+    "mac",
+    "osx",
+    "linux",
+    "tools"
+  ],
+  "repository": "jlevy/pdiffjson",
+  "author": "Joshua Levy <joshua@cal.berkeley.edu>",
+  "contributors": [
+    "Joshua Levy <joshua@cal.berkeley.edu>"
+  ],
+  "files": [
+    "pdiffjson",
+    "pjson"
+  ],
+  "bin": {
+    "pdiffjson": "pdiffjson",
+    "pjson": "pjson"
+  },
+  "directories": {
+    "man": "./man"
+  }
+}
