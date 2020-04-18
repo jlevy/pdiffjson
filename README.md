@@ -17,6 +17,15 @@
 
 ![example usage](images/example.gif)
 
+## Installation
+
+```bash
+$ npm install -g pdiffjson
+```
+
+Or copy the damn bash file to `/usr/local/bin` by hand.
+Also ensure you have `jq` and `colordiff` as well (`brew install jq colordiff` on Mac).
+
 ## Usage
 
     $ pdiffjson
@@ -40,16 +49,6 @@
     -C2 (contextual diff with two lines of context), or
     -U5 (unified diff with 5 lines of context).
     $
-
-## Installation
-
-Copy the damn bash file to `/usr/local/bin`. Also ensure you have the right tools:
-
-```bash
-$ brew install jq colordiff
-```
-
-Maybe I’ll put this in brew at some point.
 
 ## Related Work
 

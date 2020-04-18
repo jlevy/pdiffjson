@@ -1,6 +1,6 @@
 {
   "name": "pdiffjson",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "diff JSON the easy way",
   "license": "Apache 2",
   "keywords": [
@@ -19,7 +19,8 @@
   ],
   "files": [
     "pdiffjson",
-    "pjson"
+    "pjson",
+    "man"
   ],
   "bin": {
     "pdiffjson": "pdiffjson",
