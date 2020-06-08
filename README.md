@@ -29,18 +29,24 @@ Also ensure you have `jq` and `colordiff` as well (`brew install jq colordiff` o
 ## Usage
 
     $ pdiffjson
-    Usage: pdiffjson [diff options] file1.json file2.json
+    Usage: pdiffjson [--sort-arrays] [diff options] file1.json file2.json
 
     Show pretty-printed, colored diff of normalized JSON. Uses less to
     paginate the output. Allows a readable diff of any JSON, ignoring all
-    non-semantic whitespace.
+    non-semantic differences of whitespace and key ordering.
 
-    This is a "semi-structural diff", meaning it only shows structural
-    (semantic) changes but is done syntactically on JSON output, which
-    actually makes it more readable and flexible than a true structural
-    diff. Works on large files since it relies only on diff and jq.
-    Keys are sorted before calling diff, so ordering of keys in collections
-    is ignored (as it should be).
+    Fields of each object are output with the keys in sorted order
+    prior to calling diff, so insignificant differences of key order
+    are ignored. The --sort-arrays option also enables recursive sorting
+    of all array values, so all differences in ordering within arrays
+    are ignored.
+
+    This is a "semi-structural diff", meaning it shows only structural
+    (semantic) changes but the diff is shown syntactically on JSON output,
+    which actually makes it more readable and flexible than a true
+    structural diff.
+
+    Works on large files since it relies only on diff and jq.
 
     By default calls diff without arguments, yielding a unified diff. But
     it can be helpful to add standard diff arguments to refine the type of
@@ -48,6 +54,7 @@ Also ensure you have `jq` and `colordiff` as well (`brew install jq colordiff` o
     -c (contextual diff),
     -C2 (contextual diff with two lines of context), or
     -U5 (unified diff with 5 lines of context).
+
     $
 
 ## Related Work

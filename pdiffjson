@@ -3,27 +3,40 @@
 set -euo pipefail
 
 if [[ $# < 2 ]]; then
-  echo 'Usage: $(basename $0) [diff options] file1.json file2.json
+  echo "Usage: $(basename $0) [--sort-arrays] [diff options] file1.json file2.json
 
 Show pretty-printed, colored diff of normalized JSON. Uses less to
 paginate the output. Allows a readable diff of any JSON, ignoring all
-non-semantic whitespace.
+non-semantic differences of whitespace and key ordering.
 
-This is a "semi-structural diff", meaning it only shows structural
-(semantic) changes but is done syntactically on JSON output, which
-actually makes it more readable and flexible than a true structural
-diff. Works on large files since it relies only on diff and jq.
-Keys are sorted before calling diff, so ordering of keys in collections
-is ignored (as it should be).
+Fields of each object are output with the keys in sorted order
+prior to calling diff, so insignificant differences of key order
+are ignored. The --sort-arrays option also enables recursive sorting
+of all array values, so all differences in ordering within arrays
+are ignored.
+
+This is a \"semi-structural diff\", meaning it shows only structural
+(semantic) changes but the diff is shown syntactically on JSON output,
+which actually makes it more readable and flexible than a true
+structural diff.
+
+Works on large files since it relies only on diff and jq.
 
 By default calls diff without arguments, yielding a unified diff. But
 it can be helpful to add standard diff arguments to refine the type of
 output, such as:
 -c (contextual diff),
 -C2 (contextual diff with two lines of context), or
--U5 (unified diff with 5 lines of context).'
-
+-U5 (unified diff with 5 lines of context).
+"
   exit 1
+fi
+
+jq_script=.
+if [ "$1" == "--sort-arrays" ]; then
+  # Enable recursive sort on all arrays.
+  jq_script="walk(if type == \"array\" then sort else . end)"
+  shift
 fi
 
 # Last two args are the two files. Other options are passed to diff.
@@ -40,4 +53,4 @@ if [[ ! -f "$file2" ]]; then
   exit 1
 fi
 
-diff ${@:1:$num_diff_opts} <(jq --sort-keys . < "$file1") <(jq --sort-keys . < "$file2") | colordiff | less -R
+diff ${@:1:$num_diff_opts} <(jq --sort-keys "$jq_script" < "$file1") <(jq --sort-keys "$jq_script" < "$file2") | colordiff | less -R
