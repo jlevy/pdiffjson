@@ -1,16 +1,17 @@
 # pdiffjson
 
-- [`pdiffjson`](pdiffjson) is a one-liner bash script that’s non-obvious and useful enough more developers
+- [`pdiffjson`](pdiffjson) is a simple bash script that’s non-obvious and useful enough more developers
   should have it at their fingertips.
   It simply combines `jq`, `diff`, `colordiff`, and `less` to normalize and then diff.
-- One of the simplest and fastest ways to get prettily printed, colored, paginated diffs of
-  JSON files. Ignores all irrelevant whitespace and key ordering on collections objects.
-  Just shows you visually what’s different between two files.
 - Not a fancy web UI or a library.
+  Just the simplest and fastest way to get clear, pretty-printed, colored diffs of JSON
+  files on a console.
+  Ignores all irrelevant whitespace and key ordering on collections objects (and ordering on
+  arrays altogether, if you like) only shows you significant differences.
 - Works on large files other tools barf on, thanks to `jq`’s speed.
 - Shows context around each difference in a customizable way, thanks to `diff`.
 - Scrollable and searchable output (use space, `/`), thanks to `less`.
-- Installs quickly anywhere, thanks to bash.
+- Installs quickly anywhere, thanks to `npm`.
 - Extra bonus [`pjson`](pjson) command that colorizes and pretty-prints only.
 - *The feature list is longer than the code!*
   🤯😀
@@ -23,8 +24,8 @@
 $ npm install -g pdiffjson
 ```
 
-Or copy the damn bash file to `/usr/local/bin` by hand.
-Also ensure you have `jq` and `colordiff` as well (`brew install jq colordiff` on Mac).
+Or copy `pjson` and `pdiffjson` to `/usr/local/bin` by hand!
+Ensure you have `jq` and `colordiff` as well (`brew install jq colordiff` on Mac).
 
 ## Usage
 
