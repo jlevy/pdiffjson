@@ -1,18 +1,21 @@
-# pdiffjson
+# pjson and pdiffjson
 
-- [`pdiffjson`](pdiffjson) is a simple bash script that’s non-obvious and useful enough more developers
-  should have it at their fingertips.
-  It simply combines `jq`, `diff`, `colordiff`, and `less` to normalize and then diff.
+- [`pjson`](pjson) and [`pdiffjson`](pdiffjson) are simple bash scripts that are useful (and non-obvious) enough more
+  developers should have them at their fingertips.
+  They simply combine `jq`, `diff`, `colordiff`, and `less` to normalize, display, and diff JSON.
 - Not a fancy web UI or a library.
-  Just the simplest and fastest way to get clear, pretty-printed, colored diffs of JSON
-  files on a console.
-  Ignores all irrelevant whitespace and key ordering on collections objects (and ordering on
-  arrays altogether, if you like) only shows you significant differences.
+  Just **the simplest and fastest way to format, display, and diff JSON** directly from the
+  command line.
+- `pjson` normalizes, colorizes, and displays one file or stdin. `pdiffjson`
+  normalizes and displays a colorizied diff of any two files.
+- Display and diff both ignore all non-semantic differences in formatting and whitespace.
+  Only significant differences are shown in diff output.
+  The ordering of keys on collections objects is always ignored, as it should be, by sorting
+  keys. There’s an option to sort arrays, too, to allow unordered comparison of lists.
 - Works on large files other tools barf on, thanks to `jq`’s speed.
-- Shows context around each difference in a customizable way, thanks to `diff`.
+- Diff shows context around each change, thanks to `diff`.
 - Scrollable and searchable output (use space, `/`), thanks to `less`.
 - Installs quickly anywhere, thanks to `npm`.
-- Extra bonus [`pjson`](pjson) command that colorizes and pretty-prints only.
 - *The feature list is longer than the code!*
   🤯😀
 
@@ -29,34 +32,36 @@ Ensure you have `jq` and `colordiff` as well (`brew install jq colordiff` on Mac
 
 ## Usage
 
-    $ pdiffjson
-    Usage: pdiffjson [--sort-arrays] [diff options] file1.json file2.json
+```
+$ pdiffjson
+Usage: pdiffjson [--sort-arrays] [diff options] file1.json file2.json
 
-    Show pretty-printed, colored diff of normalized JSON. Uses less to
-    paginate the output. Allows a readable diff of any JSON, ignoring all
-    non-semantic differences of whitespace and key ordering.
+Show pretty-printed, colored diff of normalized JSON. Uses less to
+paginate the output. Allows a readable diff of any JSON, ignoring all
+non-semantic differences of whitespace and key ordering.
 
-    Fields of each object are output with the keys in sorted order
-    prior to calling diff, so insignificant differences of key order
-    are ignored. The --sort-arrays option also enables recursive sorting
-    of all array values, so all differences in ordering within arrays
-    are ignored.
+Fields of each object are output with the keys in sorted order
+prior to calling diff, so insignificant differences of key order
+are ignored. The --sort-arrays option also enables recursive sorting
+of all array values, so all differences in ordering within arrays
+are ignored.
 
-    This is a "semi-structural diff", meaning it shows only structural
-    (semantic) changes but the diff is shown syntactically on JSON output,
-    which actually makes it more readable and flexible than a true
-    structural diff.
+This is a "semi-structural diff", meaning it shows only structural
+(semantic) changes but the diff is shown syntactically on JSON output,
+which actually makes it more readable and flexible than a true
+structural diff.
 
-    Works on large files since it relies only on diff and jq.
+Works on large files since it relies only on diff and jq.
 
-    By default calls diff without arguments, yielding a unified diff. But
-    it can be helpful to add standard diff arguments to refine the type of
-    output, such as:
-    -c (contextual diff),
-    -C2 (contextual diff with two lines of context), or
-    -U5 (unified diff with 5 lines of context).
+By default calls diff without arguments, yielding a unified diff. But
+it can be helpful to add standard diff arguments to refine the type of
+output, such as:
+-c (contextual diff),
+-C2 (contextual diff with two lines of context), or
+-U5 (unified diff with 5 lines of context).
 
-    $
+$
+```
 
 ## Related Work
 
