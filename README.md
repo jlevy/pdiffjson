@@ -23,12 +23,18 @@
 
 ## Installation
 
-```bash
-$ npm install -g pdiffjson
-```
+1. Ensure you have `jq` and `colordiff` on your system.
 
-Or copy `pjson` and `pdiffjson` to `/usr/local/bin` by hand!
-Ensure you have `jq` and `colordiff` as well (`brew install jq colordiff` on Mac).
+   Use `brew install jq colordiff` on Mac, `apt-get install jq colordiff` or equivalent on Linux.
+
+2. Install the script anywhere you like.
+   Simplest:
+
+   ```bash
+   $ npm install -g pdiffjson
+   ```
+
+   Or copy `pjson` and `pdiffjson` to `/usr/local/bin` by hand!
 
 ## Usage
 
