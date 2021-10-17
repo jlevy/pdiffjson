@@ -1,17 +1,18 @@
 # pjson and pdiffjson
 
+- **Just the simplest and fastest way to format, display, and diff JSON directly from the
+  command line.** Not a fancy web UI or a library.
 - [`pjson`](pjson) and [`pdiffjson`](pdiffjson) are simple bash scripts that are useful (and non-obvious) enough more
   developers should have them at their fingertips.
-  They simply combine `jq`, `diff`, `colordiff`, and `less` to normalize, display, and diff JSON.
-- Not a fancy web UI or a library.
-  Just **the simplest and fastest way to format, display, and diff JSON** directly from the
-  command line.
-- `pjson` normalizes, colorizes, and displays one file or stdin. `pdiffjson`
-  normalizes and displays a colorizied diff of any two files.
+  They combine `jq`, `diff`, `colordiff`, and `less` to normalize, display, and diff JSON. Once you have them
+  handy, you may find yourself using them a lot.
+- `pjson` normalizes, colorizes, and displays one file or stdin.
+- `pdiffjson` normalizes and displays a colorizied diff of any two files.
 - Display and diff both ignore all non-semantic differences in formatting and whitespace.
-  Only significant differences are shown in diff output.
-  The ordering of keys on collections objects is always ignored, as it should be, by sorting
-  keys. There’s an option to sort arrays, too, to allow unordered comparison of lists.
+  Only significant differences are shown in the diff output.
+- The ordering of keys on collections objects is always ignored (as it should be!)
+  by sorting keys.
+  There’s an option to sort arrays, too, to allow unordered comparison of lists.
 - Works on large files other tools barf on, thanks to `jq`’s speed.
 - Diff shows context around each change, thanks to `diff`.
 - Scrollable and searchable output (use space, `/`), thanks to `less`.
